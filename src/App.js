@@ -1,12 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
-import { Button } from 'react-bootstrap';
+import Header from './Components/Header';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import AddProduct from './Components/AddProduct';
+import UpdateProducts from './Components/UpdateProducts';
+import Register from './Components/Register';
+import Login from './Components/Login';
 
 function App() {
   return (
     <div className="App">
-    <button onClick={()=>alert("normal Button clicked")}>normal button</button> <br/><br/>
-    <Button onClick={()=>alert("bootstrap Button clicked")}>bootstrap button</Button>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/Login" element={<Login />}></Route>
+          <Route path="/Register" element={<Register />}></Route>
+          <Route path="/Add_product" element={<AddProduct />}></Route>
+          <Route path="/update_product" element={<UpdateProducts />}></Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
