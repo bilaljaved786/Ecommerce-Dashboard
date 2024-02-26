@@ -39,7 +39,7 @@ function Header() {
                     // if login then show the login user otherwise null
                     localStorage.getItem("login") ?
                         <Nav>
-                            <NavDropdown title={user.First}>
+                            <NavDropdown title={user.username}>
                                 <NavDropdown.Item>Profile</NavDropdown.Item>
                                 <NavDropdown.Item onClick={logoutUserHandle}>Logout</NavDropdown.Item>
                             </NavDropdown>
