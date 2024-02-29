@@ -5,11 +5,9 @@ import '../App.css';
 
 function Header() {
 
-    // parse the stringfied user data
     let user = JSON.parse(localStorage.getItem("login"));
     let navigate = useNavigate();
 
-    // logout handler
     function logoutUserHandle() {
         localStorage.clear();
         navigate("/Register");
@@ -25,12 +23,14 @@ function Header() {
                             <>
                                 <Link to={"/Add_product"}>Add product</Link>
                                 <Link to={"/update_product"}>Update product</Link>
+                                <Link to={"/Get_All_products"}>Get All product</Link>
+
                             </>
                             :
                             <>
                                 <Link to={"/Register"}>Register</Link>
                                 {
-                                    localStorage.getItem("Register")? <Link to={"/Login"}>Login</Link>: null
+                                    localStorage.getItem("Register") ? <Link to={"/Login"}>Login</Link> : null
                                 }
                             </>
                     }

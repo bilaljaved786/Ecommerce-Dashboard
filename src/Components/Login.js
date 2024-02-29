@@ -1,34 +1,30 @@
-import Header from "./Header";
 import '../App.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
 
+    let navigate = useNavigate();
     let [username, setUserName] = useState("bilal");
-    let [password, setPassword] = useState(null);
+    let [password, setPassword] = useState("pakistan-147");
     let [wrongUserName, setwrongUserName] = useState(null);
 
-    let navigate = useNavigate();
-
-    function submitHandler(event) {
-        event.preventDefault();
+    function submitHandler(e) {
+        e.preventDefault();
 
         let RegisteredUser = JSON.parse(localStorage.getItem("Register"));
-        console.log("RegisteredUser",RegisteredUser)
-        if (RegisteredUser.First == username) {
+        if (RegisteredUser.First == username && password == "pakistan-147") {
             localStorage.setItem("login", JSON.stringify({ username, password }));
             navigate("/Home");
         }
-        else{
-            setwrongUserName("wrong username entered");
+        else {
+            setwrongUserName("wrong username");
             navigate("/Login");
         }
     }
 
     return (
         <div className="App">
-            <Header />
             <h1>login page</h1>
             <form onSubmit={(e) => submitHandler(e)}>
 

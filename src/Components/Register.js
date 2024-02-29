@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from './Header';
 import '../App.css';
 
 function Register() {
@@ -8,15 +7,14 @@ function Register() {
     let [First, setFname] = useState("bilal");
     let [Last, setLname] = useState("javed");
     let [Email, setEmail] = useState("bilal@gmail.com");
-    let [Company, setCompany] = useState("Dtek.ai");
-
+    let [Company, setCompany] = useState("Under-world");
     let navigate = useNavigate();
 
     async function submitHandler(e) {
         e.preventDefault();
 
         let data = { First, Last, Email, Company };
-        let result = await fetch("https://api-generator.retool.com/neM4z0/EmployeeAsync", {
+        let result = await fetch("https://api-generator.retool.com/roLwsx/Register", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -32,7 +30,6 @@ function Register() {
 
     return (
         <div>
-            <Header />
             <h1 className="register-form-padding">User Registration Form</h1><br />
             <form onSubmit={submitHandler}>
 
