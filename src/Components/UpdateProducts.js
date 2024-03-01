@@ -15,11 +15,7 @@ function UpdateProducts() {
         let product = { Name, price, barcode, image }
         console.log(product)
     }
-
-    useEffect(() => {
-        console.log("Effect triggered withput api update products page");
-    }, []);
-
+    
     function clearFields() {
         setName("");
         setPrice("");

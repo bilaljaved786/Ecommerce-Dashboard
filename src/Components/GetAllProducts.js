@@ -25,7 +25,7 @@ function GetAllProducts() {
     }, []);
 
     if (data.length != 0) {
-        console.log("cc get Api data fetched", data)
+        console.log("Get Api Data Fetched", data)
     }
 
     return (
@@ -34,6 +34,7 @@ function GetAllProducts() {
             <Table striped hover >
                 <thead>
                     <tr>
+                        <th>Product ID</th>
                         <th>Product Name</th>
                         <th>Product Price</th>
                         <th>Product barcode</th>
@@ -42,15 +43,22 @@ function GetAllProducts() {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {
+                    {
                         data.map((d, index) =>
-                            <tr>
-                                <td>{d.Name}</td>
-                                <td>@mdo</td> <span>Delete</span> &nbsp; <span>Update</span>
-                            </tr>
+                            (d.id < 50)
+                                ?
+                                <tr key={index} >
+                                    <td>{d.id}</td>
+                                    <td>{d.Name}</td>
+                                    <td>{d.price}</td>
+                                    <td>{d.barcode}</td>
+                                    <td ><img style={{ height: '30px' }} src={d.image} /></td>
+                                    <td><button>Update</button> &nbsp; <button>Delete</button></td>
+                                </tr>
+                                :
+                                null
                         )
-                    } */}
-
+                    }
                 </tbody>
             </Table>
         </div>
