@@ -7,7 +7,6 @@ function GetAllProducts() {
     let [data, setData] = useState([]);
 
     async function GetAllProd() {
-
         const result = await fetch("https://api-generator.retool.com/qBnfmg/products", {
             method: "GET",
             headers: {
@@ -15,7 +14,6 @@ function GetAllProducts() {
                 "Accept": "application/json"
             }
         })
-
         const jsonData = await result.json();
         setData(jsonData);
     }
