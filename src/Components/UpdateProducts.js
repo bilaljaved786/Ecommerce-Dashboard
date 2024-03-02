@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import { json, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function UpdateProducts() {
     const { id } = useParams();
-
     let [Name, setName] = useState();
     let [price, setPrice] = useState();
     let [barcode, setBarcode] = useState();

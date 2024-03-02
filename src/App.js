@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { useEffect } from 'react';
 import AddProduct from './Components/AddProduct';
 import UpdateProducts from './Components/UpdateProducts';
 import Register from './Components/Register';
@@ -11,11 +10,6 @@ import Header from './Components/Header';
 import './App.css';
 
 function App() {
-
-  useEffect(() => {
-    console.log("Effect triggered App component");
-  }, []);
-
   return (
     <div className="App">
       <BrowserRouter>

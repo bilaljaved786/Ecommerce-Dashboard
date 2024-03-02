@@ -23,7 +23,7 @@ function AddProduct() {
         localStorage.setItem("Product", JSON.stringify(response));
     }
 
-    function clearFields() {
+    const clearFields = () => {
         setName("");
         setPrice("");
         setBarcode("");
@@ -31,12 +31,12 @@ function AddProduct() {
 
     return (
         <div>
-            <h1>Add Product Page</h1> &nbsp;
-
+            <h1>Add Product</h1> &nbsp;
             <form onSubmit={submitHandler}>
                 <input type="text" value={Name} placeholder="Name" onChange={(e) => setName(e.target.value)} ></input><br /><br />
                 <input type="text" value={price} placeholder="price" onChange={(e) => setPrice(e.target.value)} ></input><br /><br />
                 <input type="text" value={barcode} placeholder="barcode" onChange={(e) => setBarcode(e.target.value)} ></input><br /><br />
+
                 <button type="submit" onClick={() => AddProduct()}>Add Product</button> &nbsp;
                 <button type="submit" onClick={() => clearFields()}>clear all</button>
             </form>

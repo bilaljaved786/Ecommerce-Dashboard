@@ -8,7 +8,7 @@ function Header() {
     let user = JSON.parse(localStorage.getItem("login"));
     let navigate = useNavigate();
 
-    function logoutUserHandle() {
+    const logoutUserHandle = () => {
         localStorage.clear();
         navigate("/Register");
     }
@@ -35,7 +35,6 @@ function Header() {
                     }
                 </Nav>
                 {
-                    // if login then show the login user otherwise null
                     localStorage.getItem("login") ?
                         <Nav>
                             <NavDropdown title={user.username}>

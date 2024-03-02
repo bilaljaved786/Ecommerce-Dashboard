@@ -51,14 +51,14 @@ function GetAllProducts() {
                 <tbody>
                     {
                         data.map((dat, index) =>
-                                <tr key={index} >
-                                    <td>{dat.id}</td>
-                                    <td>{dat.Name}</td>
-                                    <td>{dat.price}</td>
-                                    <td>{dat.barcode}</td>
-                                    <td><button className="wrapper-adjust-button" onClick={() => productDelete(dat.id)}>Delete</button> &nbsp;
-                                        <button><Link className="wrapper-adjust-button" to={`/update_product/${dat.id}`}>Update</Link></button></td>
-                                </tr>
+                            <tr key={index} >
+                                <td>{dat.id}</td>
+                                <td>{dat.Name}</td>
+                                <td>{dat.price}</td>
+                                <td>{dat.barcode}</td>
+                                <td><button className="wrapper-adjust-button" onClick={() => productDelete(dat.id)}>Delete</button> &nbsp;
+                                    <button><Link className="wrapper-adjust-button" to={`/update_product/${dat.id}`}>Update</Link></button></td>
+                            </tr>
                         )
                     }
                 </tbody>

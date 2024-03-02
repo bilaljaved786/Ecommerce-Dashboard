@@ -7,11 +7,11 @@
   pointer-events: none;
 }
 
-.nav_bar_wrapper a{
+.nav_bar_wrapper a {
   padding-right: 30px;
 }
 
-.register-form-padding{
+.register-form-padding {
   padding: 20px;
 }
 
@@ -26,7 +26,7 @@
   text-decoration: none;
 }
 
-.red{
+.red {
   background-color: red;
 }
 
@@ -49,6 +49,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
