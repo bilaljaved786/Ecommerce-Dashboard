@@ -20,7 +20,6 @@ function GetAllProducts() {
     }
 
     async function productDelete(id) {
-        console.log("Product Delete Id Select", id);
         await fetch("https://api-generator.retool.com/BTlJOs/data/" + id, {
             method: "DELETE"
         })
@@ -31,10 +30,12 @@ function GetAllProducts() {
         GetAllProd();
     }, []);
 
-    if (data.length != 0) {
-        console.log("Get Api Data Fetched", data)
-    }
-
+    if (data.length != 0) 
+        console.log("fetching data", data)
+        if (data.length != 0) 
+        console.log("fetching data", data)
+        if (data.length != 0) 
+        console.log("fetching data", data)
     return (
         <div>
             <br /><br />
