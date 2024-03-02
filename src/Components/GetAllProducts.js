@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import Table from 'react-bootstrap/Table';
 import React from "react";
+import { Link } from "react-router-dom";
 
 function GetAllProducts() {
 
+    console.log("from the top");
     let [data, setData] = useState([]);
 
     async function GetAllProd() {
-        const result = await fetch("https://api-generator.retool.com/qBnfmg/products", {
+        const result = await fetch("https://api-generator.retool.com/BTlJOs/data", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -18,9 +20,22 @@ function GetAllProducts() {
         setData(jsonData);
     }
 
+    async function productDelete(id) {
+        console.log("Product Delete Id Select", id);
+        let result = await fetch("https://api-generator.retool.com/BTlJOs/data/" + id, {
+            method: "DELETE"
+        })
+        console.log("product delete status",result.status);
+        GetAllProd();
+    }
+
+    const productUpdate = (id) => {
+        console.log("Product Update Id Select", id);
+    }
+
     useEffect(() => {
         GetAllProd();
-    }, []);
+    },[]);
 
     if (data.length != 0) {
         console.log("Get Api Data Fetched", data)
@@ -36,26 +51,25 @@ function GetAllProducts() {
                         <th>Product Name</th>
                         <th>Product Price</th>
                         <th>Product barcode</th>
-                        <th>Product Image</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        data.map((d, index) =>
-                            (d.id < 50)
+                        data.map((dat, index) =>
+                            (dat.id < 50)
                                 ?
                                 <tr key={index} >
-                                    <td>{d.id}</td>
-                                    <td>{d.Name}</td>
-                                    <td>{d.price}</td>
-                                    <td>{d.barcode}</td>
-                                    <td ><img style={{ height: '30px' }} src={d.image} /></td>
-                                    <td><button>Update</button> &nbsp; <button>Delete</button></td>
+                                    <td>{dat.id}</td>
+                                    <td>{dat.Name}</td>
+                                    <td>{dat.price}</td>
+                                    <td>{dat.barcode}</td>
+                                    <td><button onClick={() => productUpdate(dat.id)}>Update</button> &nbsp;
+                                        <button><Link to={"/update_product"}>Update product</Link></button></td>
                                 </tr>
                                 :
                                 null
-                        )
+                        ) 
                     }
                 </tbody>
             </Table>
