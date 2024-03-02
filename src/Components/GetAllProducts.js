@@ -32,10 +32,7 @@ function GetAllProducts() {
 
     if (data.length != 0) 
         console.log("fetching data", data)
-        if (data.length != 0) 
-        console.log("fetching data", data)
-        if (data.length != 0) 
-        console.log("fetching data", data)
+    
     return (
         <div>
             <br /><br />
