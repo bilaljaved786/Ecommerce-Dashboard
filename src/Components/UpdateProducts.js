@@ -1,27 +1,48 @@
 import { useState, useEffect } from "react";
+import { json, useParams } from "react-router-dom";
 
 function UpdateProducts() {
+    const { id } = useParams();
 
     let [Name, setName] = useState();
     let [price, setPrice] = useState();
     let [barcode, setBarcode] = useState();
-    let [image, setImage] = useState();
 
-    function submitHandler(e) {
+    const submitHandler = (e) =>
         e.preventDefault();
-    }
 
-    function AddProduct() {
-        let product = { Name, price, barcode, image }
-        console.log(product)
-    }
-    
-    function clearFields() {
+    const clearFields = () => {
         setName("");
         setPrice("");
         setBarcode("");
-        setImage("");
     }
+
+    async function updateProduct() {
+        let product = { Name, price, barcode };
+        let result = await fetch(`https://api-generator.retool.com/BTlJOs/data/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(product)
+        });
+        let response = await result.json();
+        console.log(response)
+    }
+
+    async function getData() {
+        let result = await fetch(`https://api-generator.retool.com/BTlJOs/data/${id}`, {
+            method: "GET",
+        });
+        let res = await result.json();
+        setName(res.Name);
+        setPrice(res.price);
+        setBarcode(res.barcode);
+    }
+
+    useEffect(() => {
+        getData();
+    }, [])
 
     return (
         <div>
@@ -31,10 +52,9 @@ function UpdateProducts() {
                 <input type="text" value={Name} onChange={(e) => setName(e.target.value)} ></input><br /><br />
                 <input type="text" value={price} onChange={(e) => setPrice(e.target.value)} ></input><br /><br />
                 <input type="text" value={barcode} onChange={(e) => setBarcode(e.target.value)} ></input><br /><br />
-                <input type="text" value={image} onChange={(e) => setImage(e.target.value)} ></input><br /><br />
 
-                <button type="submit" onClick={() => AddProduct()}>Update Product</button> &nbsp;
-                <button type="submit" onClick={() => clearFields()}>clear all</button>
+                <button type="submit" onClick={() => updateProduct()}>Update Product</button> &nbsp;
+                <button type="button" onClick={() => clearFields()}>clear all</button>
             </form>
         </div>
     )

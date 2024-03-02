@@ -22,7 +22,6 @@ function Header() {
                         localStorage.getItem("login") ?
                             <>
                                 <Link to={"/Add_product"}>Add product</Link>
-                                <Link to={"/update_product"}>Update product</Link>
                                 <Link to={"/Get_All_products"}>Get All product</Link>
 
                             </>

@@ -6,9 +6,8 @@ function AddProduct() {
     let [price, setPrice] = useState();
     let [barcode, setBarcode] = useState();
 
-    function submitHandler(event) {
+    const submitHandler = (event) =>
         event.preventDefault();
-    }
 
     async function AddProduct() {
         let product = { Name, price, barcode };

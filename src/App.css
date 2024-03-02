@@ -21,6 +21,11 @@
   }
 }
 
+.wrapper-adjust-button {
+  color: green;
+  text-decoration: none;
+}
+
 .red{
   background-color: red;
 }
