@@ -7,7 +7,7 @@ function Register() {
     let [First, setFname] = useState("bilal");
     let [Last, setLname] = useState("javed");
     let [Email, setEmail] = useState("bilal@gmail.com");
-    let [Company, setCompany] = useState("Under-world");
+    let [Company, setCompany] = useState("bilal industries");
     let navigate = useNavigate();
 
     async function submitHandler(e) {

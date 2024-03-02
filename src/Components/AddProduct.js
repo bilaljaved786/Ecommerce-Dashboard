@@ -6,13 +6,13 @@ function AddProduct() {
     let [price, setPrice] = useState();
     let [barcode, setBarcode] = useState();
     let navigate = useNavigate();
-    
+
     const submitHandler = (event) =>
         event.preventDefault();
 
     async function AddProduct() {
         let product = { Name, price, barcode };
-        let result = await fetch("https://api-generator.retool.com/BTlJOs/data", {
+        await fetch("https://api-generator.retool.com/BTlJOs/data", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -20,8 +20,6 @@ function AddProduct() {
             },
             body: JSON.stringify(product)
         })
-        let response = await result.json();
-        localStorage.setItem("Product", JSON.stringify(response));
         navigate("/Get_All_products");
     }
 
