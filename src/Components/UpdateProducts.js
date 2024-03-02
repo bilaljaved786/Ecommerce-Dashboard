@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function UpdateProducts() {
     const { id } = useParams();
     let [Name, setName] = useState();
     let [price, setPrice] = useState();
     let [barcode, setBarcode] = useState();
+    let navigate = useNavigate();
 
     const submitHandler = (e) =>
         e.preventDefault();
@@ -18,25 +20,25 @@ function UpdateProducts() {
 
     async function updateProduct() {
         let product = { Name, price, barcode };
-        let result = await fetch(`https://api-generator.retool.com/BTlJOs/data/${id}`, {
+        await fetch(`https://api-generator.retool.com/BTlJOs/data/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(product)
         });
-        let response = await result.json();
-        console.log(response)
+        navigate("/Get_All_products");
     }
 
     async function getData() {
         let result = await fetch(`https://api-generator.retool.com/BTlJOs/data/${id}`, {
             method: "GET",
         });
-        let res = await result.json();
-        setName(res.Name);
-        setPrice(res.price);
-        setBarcode(res.barcode);
+
+        let response = await result.json();
+        setName(response.Name);
+        setPrice(response.price);
+        setBarcode(response.barcode);
     }
 
     useEffect(() => {

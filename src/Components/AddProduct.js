@@ -1,11 +1,12 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 function AddProduct() {
 
     let [Name, setName] = useState();
     let [price, setPrice] = useState();
     let [barcode, setBarcode] = useState();
-
+    let navigate = useNavigate();
+    
     const submitHandler = (event) =>
         event.preventDefault();
 
@@ -21,6 +22,7 @@ function AddProduct() {
         })
         let response = await result.json();
         localStorage.setItem("Product", JSON.stringify(response));
+        navigate("/Get_All_products");
     }
 
     const clearFields = () => {
