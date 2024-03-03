@@ -7,6 +7,11 @@ import '../App.css';
 function GetAllProducts() {
 
     let [data, setData] = useState([]);
+
+    useEffect(() => {
+        GetAllProd();
+    }, []);
+
     async function GetAllProd() {
         const result = await fetch("https://api-generator.retool.com/BTlJOs/data", {
             method: "GET",
@@ -15,7 +20,9 @@ function GetAllProducts() {
                 "Accept": "application/json"
             }
         })
+
         const jsonData = await result.json();
+        console.log("from getAllprod function");
         setData(jsonData);
     }
 
@@ -26,15 +33,30 @@ function GetAllProducts() {
         GetAllProd();
     }
 
-    useEffect(() => {
-        GetAllProd();
-    }, []);
+    async function search(id) {
+        const result = await fetch(`https://api-generator.retool.com/BTlJOs/data/${id}`, {
+            method: "GET",
+            headers: {
+                "Accept": "application/json"
+            }
+        })
 
-    if (data.length != 0) 
-        console.log("fetching data", data)
-    
+        const jsData = await result.json();
+        if (Object.keys(jsData).length === 0) {
+            setData([jsData]);
+
+        } else {
+            const dataArray = Array.isArray(jsData) ? jsData : [jsData];
+            setData(dataArray);
+        }
+    }
+
+    if (data.length != 0)
+        console.log("fetching data", data);
+
     return (
         <div>
+            <span>search</span><input type="text" onChange={(e) => search(e.target.value)} />
             <br /><br />
             <Table striped hover >
                 <thead>
@@ -54,8 +76,13 @@ function GetAllProducts() {
                                 <td>{dat.Name}</td>
                                 <td>{dat.price}</td>
                                 <td>{dat.barcode}</td>
-                                <td><button className="wrapper-adjust-button" onClick={() => productDelete(dat.id)}>Delete</button> &nbsp;
-                                    <button><Link className="wrapper-adjust-button" to={`/update_product/${dat.id}`}>Update</Link></button></td>
+                                {
+                                    (Object.keys(dat).length !== 0)
+                                        ? <td><button className="wrapper-adjust-button" onClick={() => productDelete(dat.id)}>Delete</button> &nbsp;
+                                            <button><Link className="wrapper-adjust-button" to={`/update_product/${dat.id}`}>Update</Link></button></td>
+                                        : null
+                                }
+
                             </tr>
                         )
                     }
