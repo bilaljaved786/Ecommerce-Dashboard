@@ -3,11 +3,13 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function UpdateProducts() {
+
+    let navigate = useNavigate();
     const { id } = useParams();
+
     let [Name, setName] = useState();
     let [price, setPrice] = useState();
     let [barcode, setBarcode] = useState();
-    let navigate = useNavigate();
 
     const submitHandler = (e) =>
         e.preventDefault();
